@@ -98,11 +98,12 @@ if __name__ == "__main__":
     test_accuracy = np.mean(test_predictions == y_test[0])
     print(f"Test Accuracy: {test_accuracy * 100:.2f}%")
 
+    random_indices = np.random.choice(x_test.shape[1], 10, replace=False)
     plt.figure(figsize=(15, 6))
-    for i in range(10):
+    for i, idx in enumerate(random_indices):
         plt.subplot(2, 5, i + 1)
-        plt.imshow(x_test[:, i].reshape(28, 28), cmap='gray')
-        plt.title(f"Pred: {test_predictions[i]}, True: {y_test[0][i]}")
+        plt.imshow(x_test[:, idx].reshape(28, 28), cmap='gray')
+        plt.title(f"Pred: {test_predictions[idx]}, True: {y_test[0][idx]}")
         plt.axis('off')
     plt.tight_layout()
     plt.show()
